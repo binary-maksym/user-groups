@@ -1,0 +1,13 @@
+{
+  "extends": "eslint-config-es2015-react/base",
+  "parser": "babel-eslint",
+  "rules": {
+      
+      "keyword-spacing": 2,
+      "space-before-keywords": 0,
+      "space-after-keywords": 0,
+      "space-return-throw-case": 0,
+      "max-len": [2, 100, 2, {"ignoreUrls": true}],
+      "id-length": 0
+  }
+}
