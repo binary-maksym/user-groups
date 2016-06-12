@@ -27,6 +27,7 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "immutable": "^3.8.1",
+    "object-assign": "^4.1.0",
     "redux": "^3.5.2",
     "socket.io": "^1.4.6"
   }

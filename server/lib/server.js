@@ -20,6 +20,9 @@ function startServer(store) {
 
   io.on('connection', function (socket) {
     socket.emit('data', store.getState().toJS());
-    socket.on('action', store.dispatch.bind(store));
+    socket.on('action', function () {
+      socket.emit('pong');
+      store.dispatch.bind(store);
+    });
   });
 }
