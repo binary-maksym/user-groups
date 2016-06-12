@@ -15,20 +15,22 @@ function changeUser() {
   var groups = payload.groups;
   var isNew = payload.isNew;
 
-  var userExists = state.getIn(['users', user]);
   var areValidGroups = validateGroups(state, groups);
 
   var nextState = state;
   user = user && user.replace(/[^0-9a-z\s_-]/gi, '').substr(0, 30);
 
-  if ((isNew ? !userExists : userExists) && areValidGroups) {
-    var groupsObj = groups.reduce(function (groupsObj, group) {
-      var nextGroupsObj = groupsObj;
-      nextGroupsObj[group] = 1;
-      return nextGroupsObj;
-    }, {});
+  if (user) {
+    var userExists = user && state.hasIn(['users', user]);
+    if ((isNew ? !userExists : userExists) && areValidGroups) {
+      var groupsObj = groups.reduce(function (groupsObj, group) {
+        var nextGroupsObj = groupsObj;
+        nextGroupsObj[group] = 1;
+        return nextGroupsObj;
+      }, {});
 
-    nextState = nextState.setIn(['users', user], (0, _immutable.fromJS)(groupsObj));
+      nextState = nextState.setIn(['users', user], (0, _immutable.fromJS)(groupsObj));
+    }
   }
 
   return nextState;
