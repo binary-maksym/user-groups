@@ -62,16 +62,20 @@
         text-decoration: underline;
         cursor: pointer;
       }
-      .user-groups {
-        margin-left: 13px;
-        width: 387px;
-        overflow: hidden;
-        white-space: nowrap;
-      }
       .user-name-new {
         font-style: italic;
         cursor: pointer;
         font-size: 12px;
+      }
+    }
+    .user-groups {
+      margin-left: 13px;
+      width: 387px;
+      overflow: hidden;
+      white-space: nowrap;
+      .user-group {
+        text-decoration: underline;
+        cursor: pointer;
       }
     }
   }
@@ -146,7 +150,7 @@
         }
       }
       .user-save-button {
-      	float: right;
+        float: right;
         background: #333334;
         border: none;
         cursor: pointer;

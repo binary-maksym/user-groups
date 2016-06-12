@@ -31,6 +31,10 @@ export default class Users extends React.Component {
     };
   }
 
+  handleGroupFilter(val) {
+    this.setState({ groupFilter: val });
+  }
+
   getFilterInput() {
     return (<input
       className={classnames('filter-user')}
@@ -42,7 +46,8 @@ export default class Users extends React.Component {
     return (<GroupsSelect
       className={classnames('filter-group')}
       groups={this.props.groups}
-      onChange={(e) => this.setState({ groupFilter: e.target.value })} />);
+      value={this.state.groupFilter}
+      onChange={(e) => this.handleGroupFilter(e.target.value)} />);
   }
 
   render() {
@@ -54,7 +59,8 @@ export default class Users extends React.Component {
       <UserTable
         { ...this.props }
         userFilter={this.state.userFilter}
-        groupFilter={this.state.groupFilter} />
+        groupFilter={this.state.groupFilter}
+        handleGroupFilter={(val) => this.handleGroupFilter(val)} />
     </div>);
   }
 

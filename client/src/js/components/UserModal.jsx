@@ -20,6 +20,7 @@ export default class UserModal extends React.Component {
       changeUser: React.PropTypes.func,
       handleClose: React.PropTypes.func.isRequired,
       isShowingModal: React.PropTypes.bool.isRequired,
+      groupFilter: React.PropTypes.string,
     };
   }
 
@@ -30,13 +31,14 @@ export default class UserModal extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentWillReceiveProps() {
     this.setDefaultState();
   }
 
   setDefaultState() {
+    const defaultGroups = this.props.groupFilter ? [this.props.groupFilter] : [];
     const groups = this.props.user ?
-      this.props.users.get(this.props.user, Map()).keySeq().toArray() : [];
+      this.props.users.get(this.props.user, Map()).keySeq().toArray() : defaultGroups;
 
     this.setState({ groups });
     this.setState({ newUser: this.props.user });

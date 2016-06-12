@@ -14,6 +14,7 @@ export default class UsersTable extends React.Component {
       users: React.PropTypes.instanceOf(Map),
       userFilter: React.PropTypes.string,
       groupFilter: React.PropTypes.string,
+      handleGroupFilter: React.PropTypes.func.isRequired,
     };
   }
 
@@ -39,8 +40,20 @@ export default class UsersTable extends React.Component {
   }
 
   getUserGroups(user) {
-    const groups = user ? this.props.users.get(user).keySeq().join() : '';
-    return <div className={classnames('user-groups', 'col')} title={groups}>{groups}</div>;
+    let groups = [];
+    if (user) {
+      let i = 1;
+      this.props.users.get(user).keySeq().forEach((group) => {
+        groups.push(<a
+          className='user-group'
+          key={i++}
+          onClick={() => this.props.handleGroupFilter(group)}>{group}</a>);
+        groups.push(<span key={i++}>, </span>);
+      });
+      groups.pop();
+    }
+
+    return <div className={classnames('user-groups', 'col')}>{groups}</div>;
   }
 
   getUserLine(key, user) {
