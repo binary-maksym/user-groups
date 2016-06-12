@@ -7,7 +7,7 @@ import reducer from '~/reducer';
 import { APImiddleware } from '~/middleware/API';
 
 export default function makeStore(initialState = Map()) {
-  const socket = io(`${location.protocol}//${location.hostname}:8090`);
+  const socket = io('ws://localhost:8090');
   const finalCreateStore = applyMiddleware(
     APImiddleware(socket),
     createLogger({

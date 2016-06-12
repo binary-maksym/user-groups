@@ -1,11 +1,14 @@
 import { fromJS, Map } from 'immutable';
 
 export function changeUser(state = Map(), payload = {}) {
-  const { user, groups, isNew } = payload;
+  let { user } = payload;
+  const { groups, isNew } = payload;
   const userExists = state.getIn(['users', user]);
   const areValidGroups = validateGroups(state, groups);
 
   let nextState = state;
+  user = user.replace(/[^0-9a-z\s_-]/i, '').substr(0, 30);
+
   if ((isNew ? !userExists : userExists) && areValidGroups) {
     const groupsObj = groups.reduce((groupsObj, group) => {
       const nextGroupsObj = groupsObj;
