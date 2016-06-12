@@ -15,11 +15,23 @@ export default function makeStore(initialState = Map()) {
         return state && state.toJS();
       },
     })
-    )(createStore);
+  )(createStore);
 
   const store = finalCreateStore(reducer, initialState);
 
-  socket.on('data', (data) => store.dispatch({ type: 'SUCCESS_DATA', payload: { data } }));
+  socket.on('data', (data) => {
+    store.dispatch({ type: 'SUCCESS_DATA', payload: { data } });
+  }).on('connect', () => {
+    store.dispatch({ type: 'SET_CONNECTION_STATE', payload: { state: 1 } });
+  }).on('connect_timeout', () => {
+    store.dispatch({ type: 'SET_CONNECTION_STATE', payload: { state: 2 } });
+  }).on('reconnect', () => {
+    store.dispatch({ type: 'SET_CONNECTION_STATE', payload: { state: 3 } });
+  }).on('reconnect_attempt', () => {
+    store.dispatch({ type: 'SET_CONNECTION_STATE', payload: { state: 4 } });
+  }).on('reconnect_error', () => {
+    store.dispatch({ type: 'SET_CONNECTION_STATE', payload: { state: 5 } });
+  });
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

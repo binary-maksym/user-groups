@@ -168,3 +168,37 @@
     background: #000;
   }
 }
+
+.crouton {
+  color: #FFF;
+  font-size:14px;
+  line-height: 47px;
+  opacity: .95;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  width: 600px;
+  height: 34px;
+  text-align: center;
+  z-index: 99999;
+  margin: 0 auto;
+  div {
+    &.info {
+      background-color: #1F8DD6;
+    }
+    &.success {
+      background-color: #50CD84;
+    }
+    &.warning {
+      background-color: #FF8859;
+    }
+    &.error {
+      background-color: #FF5F5F;
+    }
+    span {
+      display: block;
+      margin-bottom: 0;
+    }
+  }
+}

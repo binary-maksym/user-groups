@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from '~/components/Navigation';
+import ConnectionState from '~/components/ConnectionState';
 
 export default class Container extends React.Component {
   static get displayName() {
@@ -14,6 +15,7 @@ export default class Container extends React.Component {
 
   render() {
     return (<div className='Container'>
+      <ConnectionState { ...this.props }/>
       <Navigation { ...this.props }/>
       {this.props.children}
     </div>);

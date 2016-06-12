@@ -21,13 +21,14 @@ export default class App extends React.Component {
     const mapStateToProps = (state) => ({
       users: state.get('users'),
       groups: state.get('groups'),
+      state: state.get('connection_state'),
     });
 
     return connect(mapStateToProps, actionCreators)(component);
   }
 
   getRoutes() {
-    return (<Route component={Container}>
+    return (<Route component={this.connect(Container)}>
       <Route path='/' component={this.connect(Users)}/>
       <Route path='/groups' component={this.connect(Groups)}/>
     </Route>);
