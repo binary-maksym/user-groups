@@ -7,8 +7,7 @@ export function changeUser(state = Map(), payload = {}) {
   const areValidGroups = validateGroups(state, groups);
 
   let nextState = state;
-  user = user || '';
-  user = user.replace(/[^0-9a-z\s_-]/i, '').substr(0, 30);
+  user = user && user.replace(/[^0-9a-z\s_-]/gi, '').substr(0, 30);
 
   if ((isNew ? !userExists : userExists) && areValidGroups) {
     const groupsObj = groups.reduce((groupsObj, group) => {
