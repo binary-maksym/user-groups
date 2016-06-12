@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "76186386d1e4eda53d96"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "549efaeef381dec711de"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -18724,7 +18724,7 @@
 	function makeStore() {
 	  var initialState = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
 
-	  var socket = (0, _socket2.default)('ws://localhost:8090');
+	  var socket = (0, _socket2.default)('ws://128.199.94.82:8090');
 	  var finalCreateStore = (0, _redux.applyMiddleware)((0, _API.APImiddleware)(socket), (0, _reduxLogger2.default)({
 	    stateTransformer: function stateTransformer(state) {
 	      return state && state.toJS();
