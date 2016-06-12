@@ -4,8 +4,6 @@ import { fromJS, Map } from 'immutable';
 import reducer from '~/reducer';
 
 describe('reducer', () => {
-  it('empty args', () => expect(reducer()).to.eql(Map()));
-
   it('SUCCESS_DATA', () => {
     expect(reducer(fromJS({
       pending: 1,
@@ -14,7 +12,7 @@ describe('reducer', () => {
       type: 'SUCCESS_DATA',
       payload: { data: { groups: { group1: 1 } } },
     })).to.eql(fromJS({
-      data: { groups: { group1: 1 } },
+      groups: { group1: 1 },
     }));
   });
 

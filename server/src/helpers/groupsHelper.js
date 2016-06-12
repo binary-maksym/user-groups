@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 
 export function addGroup(state = Map(), payload = {}) {
   let { group } = payload;
-  group = group.replace(/[^0-9a-z\s_-]/i, '').substr(0, 30);
+  group = group && group.replace(/[^0-9a-z\s_-]/i, '').substr(0, 30);
 
   return group ? state.setIn(['groups', group], 1) : state;
 }

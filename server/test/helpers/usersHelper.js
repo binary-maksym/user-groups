@@ -23,8 +23,6 @@ describe('helpers::usersHelper', () => {
   });
 
   describe('changeUser', () => {
-    it('empty input', () => expect(changeUser()).to.eql(Map()));
-
     it('attempt adding existing user', () => {
       expect(changeUser(state, { user: 'user1', groups: ['group1'], isNew: 1 })).to.eql(state);
     });

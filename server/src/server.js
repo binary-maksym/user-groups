@@ -9,9 +9,9 @@ export default function startServer(store) {
 
   io.on('connection', (socket) => {
     socket.emit('data', store.getState().toJS());
-    socket.on('action', () => {
+    socket.on('action', (data) => {
       socket.emit('pong');
-      store.dispatch.bind(store)
+      store.dispatch.bind(store)(data);
     });
   });
 }
