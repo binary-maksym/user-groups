@@ -19,7 +19,8 @@ function changeUser() {
   var areValidGroups = validateGroups(state, groups);
 
   var nextState = state;
-  user = user && user.replace(/[^0-9a-z\s_-]/i, '').substr(0, 30);
+  user = user || '';
+  user = user.replace(/[^0-9a-z\s_-]/i, '').substr(0, 30);
 
   if ((isNew ? !userExists : userExists) && areValidGroups) {
     var groupsObj = groups.reduce(function (groupsObj, group) {
