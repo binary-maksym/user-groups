@@ -11,7 +11,7 @@ export default function startServer(store) {
     socket.emit('data', store.getState().toJS());
     socket.on('action', (data) => {
       socket.emit('pong');
-      store.dispatch.bind(store)(data);
+      store.dispatch(data);
     });
   });
 }
