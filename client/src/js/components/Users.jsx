@@ -13,6 +13,10 @@ export default class Users extends React.Component {
     return {
       groups: React.PropTypes.instanceOf(Map).isRequired,
       users: React.PropTypes.instanceOf(Map).isRequired,
+      filterGroups: React.PropTypes.func.isRequired,
+      filterUsers: React.PropTypes.func.isRequired,
+      groupFilter: React.PropTypes.string,
+      usersFilter: React.PropTypes.string,
     };
   }
 
@@ -20,34 +24,24 @@ export default class Users extends React.Component {
     return {
       users: Map(),
       groups: Map(),
-    };
-  }
-
-  constructor() {
-    super();
-    this.state = {
-      userFilter: '',
+      usersFilter: '',
       groupFilter: '',
     };
-  }
-
-  handleGroupFilter(val) {
-    this.setState({ groupFilter: val });
   }
 
   getFilterInput() {
     return (<input
       className={classnames('filter-user')}
       placeholder='Search'
-      onChange={(e) => this.setState({ userFilter: e.target.value })} />);
+      onChange={(e) => this.props.filterUsers({ group: e.target.value })} />);
   }
 
   getGroupsFilter() {
     return (<GroupsSelect
       className={classnames('filter-group')}
       groups={this.props.groups}
-      value={this.state.groupFilter}
-      onChange={(e) => this.handleGroupFilter(e.target.value)} />);
+      value={this.props.groupFilter}
+      onChange={(e) => this.props.filterGroups({ group: e.target.value })} />);
   }
 
   render() {
@@ -58,8 +52,8 @@ export default class Users extends React.Component {
       </div>
       <UserTable
         { ...this.props }
-        userFilter={this.state.userFilter}
-        groupFilter={this.state.groupFilter}
+        userFilter={this.props.usersFilter}
+        groupFilter={this.props.groupFilter}
         handleGroupFilter={(val) => this.handleGroupFilter(val)} />
     </div>);
   }

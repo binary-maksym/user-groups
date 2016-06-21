@@ -2,9 +2,9 @@ import React from 'react';
 import Navigation from '~/components/Navigation';
 import ConnectionState from '~/components/ConnectionState';
 
-export default class Container extends React.Component {
+export default class ContentContainer extends React.Component {
   static get displayName() {
-    return 'Container';
+    return 'ContentContainer';
   }
 
   static get propTypes() {
@@ -14,7 +14,7 @@ export default class Container extends React.Component {
   }
 
   render() {
-    return (<div className='Container'>
+    return (<div className='ContentContainer'>
       <ConnectionState { ...this.props }/>
       <Navigation { ...this.props }/>
       {this.props.children}

@@ -6,6 +6,7 @@ const initialState = fromJS({
   connection_state: 0,
 });
 
+
 export default function reducer(state = initialState, action = {}) {
   const payload = action.payload;
 
@@ -24,6 +25,12 @@ export default function reducer(state = initialState, action = {}) {
       const connState = payload.state;
       return typeof connState === 'number' ? state.set('connection_state', connState) : state;
 
+    case 'FIlTER_USERS':
+      return state.set('usersFilter', payload.user);
+    case 'FIlTER_GROUPS':
+      return state.set('groupFilter', payload.group);
+    case 'SWITCH_MODAL':
+      return state.update('userModalShow', (userModal) => !userModal);
     default:
       return state;
   }

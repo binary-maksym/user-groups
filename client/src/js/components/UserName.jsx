@@ -13,34 +13,22 @@ export default class UserName extends React.Component {
       groups: React.PropTypes.instanceOf(Map),
       user: React.PropTypes.string,
       deleteUser: React.PropTypes.func,
+      switchModal: React.PropTypes.func,
+      userModalShow: React.PropTypes.bool,
     };
   }
 
   static get defaultProps() {
     return {
       groups: Map(),
+      userModalShow: false,
     };
-  }
-
-  constructor() {
-    super();
-    this.state = {
-      isShowingModal: false,
-    };
-  }
-
-  handleClose() {
-    this.setState({ isShowingModal: false });
-  }
-
-  handleOpen() {
-    this.setState({ isShowingModal: true });
   }
 
   getModal() {
     return (<UserModal {...this.props}
-      handleClose={() => this.handleClose()}
-      isShowingModal={this.state.isShowingModal} />);
+      handleClose={() => this.props.switchModal()}
+      isShowingModal={this.props.userModalShow} />);
   }
 
   render() {
@@ -51,17 +39,17 @@ export default class UserName extends React.Component {
       userEl = (<a
         className={classnames('user-name')}
         title={this.props.user}
-        onClick={() => this.handleOpen()}>{this.props.user}</a>);
+        onClick={() => this.props.switchModal()}>{this.props.user}</a>);
       button = (<button
         className={classnames('user-del-button')}
-        onClick={() => this.props.deleteUser({ user: this.props.user })}>-</button>);
+        onClick={() => this.props.switchModal({ user: this.props.user })}>-</button>);
     } else {
       userEl = (<span
         className={classnames('user-name-new')}
-        onClick={() => this.handleOpen()}>Add user</span>);
+        onClick={() => this.props.switchModal()}>Add user</span>);
       button = (<button
         className={classnames('user-add-button')}
-        onClick={() => this.handleOpen()}>+</button>);
+        onClick={() => this.props.switchModal()}>+</button>);
     }
 
     return <div className={classnames('user-cell', 'col')}>{button}{userEl}{this.getModal()}</div>;

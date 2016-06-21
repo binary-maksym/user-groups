@@ -3,12 +3,12 @@ import { Provider, connect } from 'react-redux';
 import React from 'react';
 import Users from '~/components/Users';
 import Groups from '~/components/Groups';
-import Container from '~/components/Container';
+import ContentContainer from '~/components/ContentContainer';
 import actionCreators from '~/actionCreators';
 
-export default class App extends React.Component {
+export default class AppContainer extends React.Component {
   static get displayName() {
-    return 'App';
+    return 'AppContainer';
   }
 
   static get propTypes() {
@@ -28,7 +28,7 @@ export default class App extends React.Component {
   }
 
   getRoutes() {
-    return (<Route component={this.connect(Container)}>
+    return (<Route component={this.connect(ContentContainer)}>
       <Route path='/' component={this.connect(Users)}/>
       <Route path='/groups' component={this.connect(Groups)}/>
     </Route>);
