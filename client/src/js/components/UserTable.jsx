@@ -42,13 +42,12 @@ export default class UsersTable extends React.Component {
   getUserGroups(user) {
     let groups = [];
     if (user) {
-      let i = 1;
-      this.props.users.get(user).keySeq().forEach((group) => {
+      this.props.users.get(user).keySeq().forEach((group, key) => {
         groups.push(<a
           className='user-group'
-          key={i++}
+          key={key}
           onClick={() => this.props.handleGroupFilter(group)}>{group}</a>);
-        groups.push(<span key={i++}>, </span>);
+        groups.push(<span key={`${key}coma`}>, </span>);
       });
       groups.pop();
     }

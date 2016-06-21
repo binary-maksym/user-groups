@@ -1,40 +1,68 @@
-import API from '~/middleware/API';
-
 const actionCreators = {
   addUser(payload) {
     return {
-      [API]: { type: 'ADD_USER', payload },
+      type: 'ADD_USER',
+      payload,
+      isAPI: true,
+
     };
   },
 
   changeUser(payload) {
     return {
-      [API]: { type: 'CHANGE_USER', payload },
+      type: 'CHANGE_USER',
+      payload,
+      isAPI: true,
     };
   },
 
   deleteUser(payload) {
     return {
-      [API]: { type: 'DELETE_USER', payload },
+      type: 'DELETE_USER',
+      payload,
+      isAPI: true,
     };
   },
 
   addGroup(payload) {
     return {
-      [API]: { type: 'ADD_GROUP', payload },
+      type: 'ADD_GROUP',
+      payload,
+      isAPI: true,
     };
   },
 
   deleteGroup(payload) {
     return {
-      [API]: { type: 'DELETE_GROUP', payload },
+      type: 'DELETE_GROUP',
+      payload,
+      isAPI: true,
     };
   },
 
   requestState() {
     return {
-      [API]: { type: 'REQUEST_STATE' },
+      type: 'REQUEST_STATE',
+      isAPI: true,
     };
+  },
+
+  filterUsers(payload) {
+    return {
+      type: 'FIlTER_USERS',
+      payload,
+    };
+  },
+
+  filterGroups(payload) {
+    return {
+      type: 'FIlTER_GROUPS',
+      payload,
+    };
+  },
+
+  switchModal() {
+    return { type: 'SWITCH_MODAL' };
   },
 };
 

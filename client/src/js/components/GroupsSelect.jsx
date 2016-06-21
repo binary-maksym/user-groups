@@ -21,10 +21,9 @@ export default class GroupsSelect extends React.Component {
 
   render() {
     const groups = this.props.groups.keySeq().toArray();
-    let i = 1;
-    let groupOptions = groups.map((group) => <option value={group} key={i++}>{group}</option>);
+    let groupOptions = groups.map((group, key) => <option value={group} key={key}>{group}</option>);
     if (!this.props.multiple) {
-      groupOptions.unshift(<option value='' key={i++}>Select group</option>);
+      groupOptions.unshift(<option value='' key='selectGroup'>Select group</option>);
     }
 
     return <select { ...this.props }>{groupOptions}</select>;
